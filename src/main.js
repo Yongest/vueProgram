@@ -7,12 +7,21 @@
 //导入相应的包
 import Vue from 'vue' //相当es5中的 var Vue = require('vue')
 //const path = reuire('path')
-
 // 导入根组件
 import  App from './Vue.vue'  //相当于 es5中的 var App = reuire('./App.vue')
 
-// 创建Vue 实例
+//website: mint-ui.github.io/#!/zh-cn
+import  Mint from 'mint-ui'
+//https://github.com/ElemeFE/mint-ui/
+import 'mint-ui/lib/style.css'
 
+import '../statics/mui/css/mui.min.css'
+import '../statics/mui/css/icons-extra.css'
+
+
+//使用 Mint 这个中间件
+Vue.use(Mint)
+// 创建Vue 实例
 new Vue({
     el:'#app',
 
