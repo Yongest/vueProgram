@@ -3,12 +3,12 @@
  */
 
 //负责导入其他文件, .vue .js .css ......这些文件,然后统一打包
+//const path = reuire('path')
 
 //导入相应的包
 import Vue from 'vue' //相当es5中的 var Vue = require('vue')
 import VueRouter from 'vue-router'
-//const path = reuire('path')
-
+import  VueResource from 'vue-resource'
 
 //website: mint-ui.github.io/#!/zh-cn
 import  Mint from 'mint-ui'
@@ -27,6 +27,8 @@ import '../statics/css/common.css'
 Vue.use(Mint)
 //使用VueRouter 中间件
 Vue.use(VueRouter)
+//使用VueResource 中间件
+Vue.use(VueResource)
 
 // 导入根组件
 import  App from './Vue.vue'  //相当于 es5中的 var App = reuire('./App.vue')

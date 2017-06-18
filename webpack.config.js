@@ -25,7 +25,7 @@ module.exports = {
                 loader:'style-loader!css-loader'//order cant not change
             },
             {
-                test:/\.ttf$/,
+                test:/\.(ttf|png|jpg|svg)$/,
                 loader:'url-loader?limit=4000' // when pickture size less than 4k, use 'base-64' express
             }
         ]

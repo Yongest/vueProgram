@@ -4,7 +4,7 @@ This is the vue project that include webpack、vue、mui、mint-ui、es6、node 
 # step one
 
 ## 项目的搭建
-    1、创建项目gz06
+    1、创建项目vue
     2、创建必要的文件夹
         src:源代码
         dist:最后打包的时候用
