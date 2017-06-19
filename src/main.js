@@ -8,7 +8,8 @@
 //导入相应的包
 import Vue from 'vue' //相当es5中的 var Vue = require('vue')
 import VueRouter from 'vue-router'
-import  VueResource from 'vue-resource'
+import VueResource from 'vue-resource'
+import moment from 'moment'
 
 //website: mint-ui.github.io/#!/zh-cn
 import  Mint from 'mint-ui'
@@ -17,7 +18,10 @@ import 'mint-ui/lib/style.css'
 // import mui style
 import '../statics/mui/css/mui.min.css'
 import '../statics/mui/css/icons-extra.css'
-
+//导入mui.min.js
+//import mui from '../statics/mui/js/mui.min.js'
+//import  '../statics/mui/js/mui.lazyload.js'
+//import  '../statics/mui/js/mui.lazyload.img.js'
 //导入我们自己的样式
 import '../statics/css/common.css'
 
@@ -38,15 +42,23 @@ import home from './components/home/home.vue'
 import member from './components/member/member.vue'
 import settings from './components/settings/settings.vue'
 import shopcar from './components/shopcar/shopcar.vue'
+import newslist from './components/news/newslist.vue'
+import newsinfo from './components/news/newsinfo.vue'
 
-
+//写一个时间过滤器,
+Vue.filter('dateFmt',(input,dateResult)=>{
+    var dateResult = dateResult || 'YYYY-MM-DD'
+    return moment(input).format(dateResult)
+})
 const vueRouter = new VueRouter({
     routes :[
         {path: '/', redirect: { name: 'home' }},
         {name:'home',path: '/home', component: home},
         {path: '/member', component: member},
         {path: '/settings', component: settings},
-        {path: '/shopcar', component: shopcar}
+        {path: '/shopcar', component: shopcar},
+        {path: '/news/newslist', component: newslist},
+        {path:'/news/newsinfo/:newsId',component:newsinfo}
     ],
     linkActiveClass:'mui-active'
 })
