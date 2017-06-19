@@ -19,7 +19,7 @@
                     </router-link>
                 </li>
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                    <router-link to="/">
+                    <router-link to="/photo/photolist">
                         <span class="mui-icon mui-icon-email"><span class="mui-badge">5</span></span>
                         <div class="mui-media-body">图片分享</div>
                     </router-link>
