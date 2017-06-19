@@ -7,6 +7,9 @@
         <div v-html="getNewsInfoData.content" class="news-info-body">
 
         </div>
+
+        <!-- 我是子组件-->
+        <subcomponent :commonId="this.$route.params.newsId"></subcomponent>
     </div>
 </template>
 
@@ -40,7 +43,7 @@
 
 <script>
     import common from '../../common/common.js'
-
+    import subcomponent from '../subcomponents/subcomponent.vue'
     export default  {
         data (){
             return {
@@ -60,6 +63,9 @@
                     console.log(err)
                 })
             }
+        },
+        components:{
+            subcomponent:subcomponent
         }
     }
 </script>

@@ -13,11 +13,14 @@ import moment from 'moment'
 
 //website: mint-ui.github.io/#!/zh-cn
 import  Mint from 'mint-ui'
+import { Lazyload } from 'mint-ui';
+
 //https://github.com/ElemeFE/mint-ui/
 import 'mint-ui/lib/style.css'
 // import mui style
 import '../statics/mui/css/mui.min.css'
 import '../statics/mui/css/icons-extra.css'
+
 //导入mui.min.js
 //import mui from '../statics/mui/js/mui.min.js'
 //import  '../statics/mui/js/mui.lazyload.js'
@@ -33,7 +36,8 @@ Vue.use(Mint)
 Vue.use(VueRouter)
 //使用VueResource 中间件
 Vue.use(VueResource)
-
+//使用Vue.use(Lazyload);
+Vue.use(Lazyload);
 // 导入根组件
 import  App from './Vue.vue'  //相当于 es5中的 var App = reuire('./App.vue')
 

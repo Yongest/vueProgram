@@ -4,7 +4,7 @@
             <ul class="mui-table-view">
                 <li v-for="item in newsListData" class="mui-table-view-cell mui-media">
                     <router-link :to="'/news/newsinfo/'+item.id">
-                        <img class="mui-media-object mui-pull-left" :src="item.img_url">
+                        <img class="mui-media-object mui-pull-left" v-lazy="item.img_url">
                         <div class="mui-media-body">
                             <span>{{item.title}}</span>
                             <p class='mui-ellipsis'>
@@ -43,6 +43,7 @@
         text-overflow:ellipsis;
         white-space: nowrap;
     }
+    
 </style>
 <script>
     import common from '../../common/common.js'
