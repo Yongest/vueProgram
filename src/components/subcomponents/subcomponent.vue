@@ -8,14 +8,14 @@
         <div class="comment-list">
             <h4>评论列表</h4>
             <div class="data-father" v-for="(item,index) in addCommentData" :key="index">
-                <div>{{item.content}}</div>
+                <div class='content'>{{item.content}}</div>
                 <p class="data">
                     <span class="user">匿名用户</span>
                     <span class="add-time">{{item.add_time | dateFmt('YYYY-MM-DD HH:MM')}}</span>
                 </p>
             </div>
         </div>
-        <mt-button class="load-more" plain size="large" type="danger">加载更多</mt-button>
+        <mt-button @click="loadmore" class="load-more" plain size="large" type="danger">加载更多</mt-button>
     </div>
 </template>
 
@@ -38,10 +38,13 @@
     }
     .data {
         clear: both;
-        height: 20px;
+        min-height: 20px;
     }
     .data-father {
         border-bottom: 1px solid darkslategray;
+    }
+    .content {
+        word-break: break-all;
     }
 </style>
 
@@ -57,12 +60,6 @@
         },
         created(){
             this.getComment()
-            Toast({
-                 message: '评论成功',
-                position: 'bottom',
-                duration: 2000,
-                position:'middle'
-             });
         },
         methods:{
             getComment(){
@@ -79,10 +76,42 @@
                 var url = common.apihost + 'api/postcomment/'+ this.commonId
                 var txtValue = document.querySelector('textarea').value
 //                console.log(txtValue)
+                if(txtValue=="" ||txtValue.trim()==""){
+                    Toast({
+                        message: '评论不能为哦!',
+                        position: 'middle',
+                        duration: 2000,
+                    });
+                    return false;
+                }
                 this.$http.post(url,{content:txtValue},{emulateJSON:true}).then(res=>{
-                    if(res.body.message==='评论提交成功'){
-                        location.reload()
-                    }
+                    document.querySelector('textarea').value = null
+                    Toast({
+                        message: res.body.message,
+                        position: 'middle',
+                        duration: 2000,
+                    });
+                    var url = common.apihost + 'api/getcomments/'+this.commonId+"?pageindex=1"
+                    this.$http.get(url).then(res=>{
+//                    console.log(res.body.message)
+                        this.addCommentData = res.body.message
+                    },err=>{
+
+                    })
+                },err=>{
+
+                })
+            },
+            loadmore (){
+                this.pageindex++
+                var url = common.apihost + 'api/getcomments/'+this.commonId+"?pageindex="+this.pageindex++
+                this.$http.get(url).then(res=>{
+                    this.addCommentData = this.addCommentData.concat(res.body.message)
+                    Toast({
+                        message: '加载成功',
+                        position: 'middle',
+                        duration: 2000,
+                    });
                 },err=>{
 
                 })

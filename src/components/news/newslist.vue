@@ -43,7 +43,7 @@
         text-overflow:ellipsis;
         white-space: nowrap;
     }
-    
+
 </style>
 <script>
     import common from '../../common/common.js'
