@@ -13,11 +13,13 @@
             <ul class="imglist-ul">
                 <li v-for="item in imgListData">
                     <!--<img :src="item.img_url" alt=""/>-->
-                    <img v-lazy="item.img_url">
-                    <p>
-                        <span class="title">{{item.title}}</span><br/>
-                        <span>{{item.zhaiyao}}</span>
-                    </p>
+                    <router-link :to="'/photo/photoinfo/'+item.id">
+                        <img v-lazy="item.img_url">
+                         <p>
+                            <span class="title">{{item.title}}</span><br/>
+                            <span>{{item.zhaiyao}}</span>
+                        </p>
+                    </router-link>
                 </li>
             </ul>
         </div>

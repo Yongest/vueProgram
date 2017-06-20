@@ -25,8 +25,13 @@ module.exports = {
                 loader:'style-loader!css-loader'//order cant not change
             },
             {
-                test:/\.(ttf|png|jpg|svg)$/,
+                //test:/\.(ttf|png|jpg|gif|svg)$/,
+                test:/\.(png|ttf|gif|svg)$/,
                 loader:'url-loader?limit=4000' // when pickture size less than 4k, use 'base-64' express
+            },
+            {
+                test: /vue-preview.src.*?js$/,
+                loader: 'babel-loader'
             }
         ]
     },

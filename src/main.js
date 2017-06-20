@@ -10,6 +10,7 @@ import Vue from 'vue' //相当es5中的 var Vue = require('vue')
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import moment from 'moment'
+import VuePreview from 'vue-preview'
 
 //website: mint-ui.github.io/#!/zh-cn
 import  Mint from 'mint-ui'
@@ -37,7 +38,9 @@ Vue.use(VueRouter)
 //使用VueResource 中间件
 Vue.use(VueResource)
 //使用Vue.use(Lazyload);
-Vue.use(Lazyload);
+Vue.use(Lazyload)
+//使用图片图兰插件Vue.use(VuePreview)
+Vue.use(VuePreview)
 // 导入根组件
 import  App from './Vue.vue'  //相当于 es5中的 var App = reuire('./App.vue')
 
@@ -49,6 +52,7 @@ import shopcar from './components/shopcar/shopcar.vue'
 import newslist from './components/news/newslist.vue'
 import newsinfo from './components/news/newsinfo.vue'
 import photolist from './components/photo/photolist.vue'
+import photoinfo from  './components/photo/photoinfo.vue'
 
 //写一个时间过滤器,
 Vue.filter('dateFmt',(input,dateResult)=>{
@@ -64,7 +68,8 @@ const vueRouter = new VueRouter({
         {path: '/shopcar', component: shopcar},
         {path: '/news/newslist', component: newslist},
         {path:'/news/newsinfo/:newsId',component:newsinfo},
-        {path:'/photo/photolist',component:photolist}
+        {path:'/photo/photolist',component:photolist},
+        {path:'/photo/photoinfo/:infoId',component:photoinfo}
     ],
     linkActiveClass:'mui-active'
 })
