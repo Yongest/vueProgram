@@ -44,9 +44,17 @@
         white-space: nowrap;
     }
 
+    /*懒加载*/
+    img[lazy=loading] {
+        background: yellowgreen;
+        margin: auto;
+        width: 30px;
+        height: 30px;
+    }
 </style>
 <script>
     import common from '../../common/common.js'
+    import { Lazyload } from 'mint-ui';
     export default {
         data (){
             return {
