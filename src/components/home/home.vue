@@ -85,15 +85,8 @@
 </script>
 <style scoped>
     /*   1.0 轮播图*/
-    .mt-swipe {
-        width: 100%;
-        height: 250px;
-    }
-    .mt-swipe img {
-        width: 100%;
-        height: 250px;
-    }
-    
+
+
     /*2.0九宫格*/
     .mui-content>.mui-table-view:first-child {
         background-color: #fff;
