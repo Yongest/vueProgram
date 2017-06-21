@@ -53,6 +53,8 @@ import newslist from './components/news/newslist.vue'
 import newsinfo from './components/news/newsinfo.vue'
 import photolist from './components/photo/photolist.vue'
 import photoinfo from  './components/photo/photoinfo.vue'
+import goodslist from './components/goods/goodslist.vue'
+import goodsinfo from './components/goods/goodsinfo.vue'
 
 //写一个时间过滤器,
 Vue.filter('dateFmt',(input,dateResult)=>{
@@ -69,7 +71,9 @@ const vueRouter = new VueRouter({
         {path: '/news/newslist', component: newslist},
         {path:'/news/newsinfo/:newsId',component:newsinfo},
         {path:'/photo/photolist',component:photolist},
-        {path:'/photo/photoinfo/:infoId',component:photoinfo}
+        {path:'/photo/photoinfo/:infoId',component:photoinfo},
+        {path:'/goods/goodslist',component:goodslist},
+        {path:'/goods/goodsinfo/:goodsId',component:goodsinfo}
     ],
     linkActiveClass:'mui-active'
 })

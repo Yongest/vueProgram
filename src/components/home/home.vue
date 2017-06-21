@@ -1,13 +1,7 @@
 <template>
     <div class="tmpl">
         <!--使用mint-ui 里面的轮播图swipe-->
-        <mt-swipe :auto="4000" class="mt-swipe">
-            <mt-swipe-item v-for="item in imgList" :key="item.url"><!--加上key:防止重复渲染一样的列表-->
-                <a :href="item.url">
-                    <img :src="item.img" alt=""/>
-                </a>
-            </mt-swipe-item>
-        </mt-swipe>
+        <subcomponent :imgData="imgList"></subcomponent>
         <!-- 使用mui 里面的九宫格-->
 
         <div class="mui-content">
@@ -25,7 +19,7 @@
                     </router-link>
                 </li>
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                    <router-link to="/">
+                    <router-link to="/goods/goodslist">
                         <span class="mui-icon mui-icon-chatbubble"></span>
                         <div class="mui-media-body">商品购买</div>
                     </router-link>
@@ -55,6 +49,7 @@
 <script>
 
     import common from '../../common/common.js'
+    import subcomponentimg from '../subcomponents/subcomponentimg.vue'
 //    module.exports ={ //es5 的写法
 //        data:function(){
 //            return {
@@ -82,6 +77,9 @@
                     console.log(err)
                 })
             }
+        },
+         components:{
+            subcomponent:subcomponentimg
         }
     }
 </script>
