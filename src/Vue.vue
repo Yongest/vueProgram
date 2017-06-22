@@ -15,11 +15,11 @@
                 <span class="mui-tab-label">首页</span>
             </router-link>
             <router-link class="mui-tab-item" to="/member">
-                <span class="mui-icon mui-icon-pengyouquan"><span class="mui-badge">9</span></span>
+                <span class="mui-icon mui-icon-pengyouquan"></span>
                 <span class="mui-tab-label">消息</span>
             </router-link>
             <router-link class="mui-tab-item" to="/shopcar">
-                <span class="mui-icon mui-icon-contact"></span>
+                <span class="mui-icon mui-icon-contact"><span id="badgeId" class="mui-badge">0</span></span>
                 <span class="mui-tab-label">购物车</span>
             </router-link>
             <router-link class="mui-tab-item" to="/settings">
@@ -44,6 +44,17 @@
 </style>
 
 <script>
+//    导入公共的bus Vue 实例
+    import {bus} from './common/commonvue.js'
+    //导入jquery
+    import $ from 'jquery'
+   // 在组件 B 创建的钩子中监听事件
+    bus.$on('shopCount', function (goodsCount) {
+//        console.log(goodsCount)
+        const oldValue = $('#badgeId').text()-0
+        $('#badgeId').text(oldValue+goodsCount)
+    })
+
     export default {
         data(){
             return {

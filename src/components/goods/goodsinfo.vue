@@ -21,7 +21,7 @@
 
             <div>
                 <mt-button size="small" type="primary">立即购买</mt-button>
-                <mt-button size="small" type="danger">加入购物车</mt-button>
+                <mt-button size="small" @click="addShopCar" type="danger">加入购物车</mt-button>
             </div>
         </div>
         <!-- 3.0 商品参数 -->
@@ -82,14 +82,19 @@
 
 <script>
     import common from '../../common/common.js'
+    //导入图片详情
     import subcomponentimg from '../subcomponents/subcomponentimg.vue'
+    //导入numchange 子组件
     import subnumber from '../subcomponents/subnumber.vue'
-
+    //导入公共Vue的实例bus
+//    import {bus,age} from '../../common/commonvue.js'
+    import {bus} from '../../common/commonvue.js'
     export default {
         data(){
             return {
                 goodsInfoImgData:[],
-                goodsInfo:{}
+                goodsInfo:{},
+                goodsCount:1
             }
         },
         created(){
@@ -126,8 +131,16 @@
             goPictureText(){
                 this.$router.push({ path: '/goods/goodstextpicture', query: { goodsId: this.$route.params.goodsId }})
             },
+            //子组件数量改变后,父组件要做的事情
             numberChangetoDo (count){
-                console.log(count)
+                this.goodsCount = count
+            },
+            //添加购物车
+            addShopCar(){
+//                console.log(bus)
+//                1.更改跟组件里面的tapBar中的购物车里面的徽标
+                // 触发组件 A 中的事件
+                bus.$emit('shopCount',this.goodsCount)
             }
         },
         components:{
