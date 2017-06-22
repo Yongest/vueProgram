@@ -16,7 +16,9 @@
             <!--<button @click="btnClick"></button>-->
             <!-- 和上面对比下 -->
             <!--<subnumber @numberChange="getSubnumberCount"></subnumber>-->
+            <subnumber @numberChange="numberChangetoDo"></subnumber>
             <!-- 两个按钮 -->
+
             <div>
                 <mt-button size="small" type="primary">立即购买</mt-button>
                 <mt-button size="small" type="danger">加入购物车</mt-button>
@@ -81,6 +83,7 @@
 <script>
     import common from '../../common/common.js'
     import subcomponentimg from '../subcomponents/subcomponentimg.vue'
+    import subnumber from '../subcomponents/subnumber.vue'
 
     export default {
         data(){
@@ -112,6 +115,7 @@
 
                 })
             },
+            //去商品评论
             goGoodsComment(){
                 this.$router.push({ name: 'goodscomment', params: { goodsId: this.$route.params.goodsId}})
 //                this.$router.push({ path: '/goods/goodscomment/'+ this.$route.params.goodsId})
@@ -121,10 +125,14 @@
             //去图文列表
             goPictureText(){
                 this.$router.push({ path: '/goods/goodstextpicture', query: { goodsId: this.$route.params.goodsId }})
+            },
+            numberChangetoDo (count){
+                console.log(count)
             }
         },
         components:{
-            subcomponent:subcomponentimg
+            subcomponent:subcomponentimg,
+            subnumber:subnumber
         }
     }
 </script>
