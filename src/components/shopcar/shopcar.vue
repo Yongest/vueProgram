@@ -4,7 +4,7 @@
         <div class="goodsListDiv">
             <div class="everyGoodsItemStyle" v-for="(item,index) in shopsList" :key="item.id">
                 <!-- 1.1 开关 -->
-                <mt-switch  v-model="switchValues[index]"></mt-switch>
+                <mt-switch @change="statisticsNumberAndPrice"  v-model="switchValues[index]"></mt-switch>
                 <!-- 1.2 图片 -->
                 <img :src="item.thumb_path" />
                 <!-- 1.3 商品信息 -->
@@ -115,7 +115,7 @@
         data(){
             return {
                 shopsList:[],
-                switchValues : [],
+                switchValues:[],
                 totalCount : 0,
                 totalPrice : 0
             }
@@ -150,14 +150,40 @@
 //                4.发送ajax请求,获取数据
                 const url = common.apihost + `api/goods/getshopcarlist/${idsString}`
                 this.$http.get(url).then(res=>{
-                    res.body.message.forEach(function(item){
+                    res.body.message.forEach((item,index)=>{
                         item.count = goodsObj[item.id]
+
+                        //循环给switchValues 赋值
+                        this.switchValues[index] = true
                     })
                     this.shopsList = res.body.message
-                    console.log(res.body.message)
+//                    console.log(res.body.message)
+                    //计算总数和价格
+                    this.statisticsNumberAndPrice()
                 },err=>{
 
                 })
+            },
+            //统计商品数量与价格
+            statisticsNumberAndPrice(){
+                //统计数量与商品价格,根据每一条的开关状态来,当开关打开就统计,
+                //开关关闭不统计
+                var statisticsTotalNumber = 0
+                var statisticsTotalPrice = 0
+                //this.switchValues与this.shopsList索引是一致的.
+                this.switchValues.forEach((item,index)=>{
+                    //item 的值只有两种 true 和 false
+                    if(item){
+                        const goodsObj = this.shopsList[index]
+                        //数量的累加
+                        statisticsTotalNumber += goodsObj.count
+                        //金额的累加
+                        statisticsTotalPrice += parseInt(goodsObj.count)*parseInt(goodsObj.sell_price)
+                    }
+                })
+                //最终赋值，这样的话，就重新计算了
+                this.totalCount = statisticsTotalNumber
+                this.totalPrice = statisticsTotalPrice
             }
         }
     }
