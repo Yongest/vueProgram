@@ -64,6 +64,10 @@
         created (){
             this.getNewsList()
         },
+        destroyed(){
+//        清理 工作
+//            Indicator.close()
+        },
         methods:{
             getNewsList(){
                 var url = common.apihost + 'api/getnewslist'

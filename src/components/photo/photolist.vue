@@ -99,6 +99,10 @@
             this.getCategoryList()
             this.getCategoryId(0)
         },
+        destroyed(){
+//        清理 工作
+            Indicator.close()
+        },
         methods:{
             getCategoryList(){
                 var url = `${common.apihost}api/getimgcategory`

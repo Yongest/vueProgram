@@ -150,7 +150,7 @@
                     idsArr.push(key)
                 }
                 var idsString= idsArr.join(',')
-                console.log(idsString)
+//                console.log(idsString)
 //                4.发送ajax请求,获取数据
                 const url = common.apihost + `api/goods/getshopcarlist/${idsString}`
                 this.$http.get(url).then(res=>{

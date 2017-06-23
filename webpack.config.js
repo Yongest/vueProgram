@@ -1,6 +1,6 @@
 //遵循 commonJs 的规范
 const path = require('path')
-
+var webpack = require('webpack')
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -17,8 +17,8 @@ module.exports = {
     module :{
         loaders:[
             {
-            test:/\.vue/,
-             loader:'vue-loader'//装了三个,只要写这一个,因为有相互依赖
+                test:/\.vue$/,
+                loader:'vue-loader'//装了三个,只要写这一个,因为有相互依赖
             },
             {
                 test:/\.css$/,
@@ -35,10 +35,21 @@ module.exports = {
             }
         ]
     },
-    plugins :[new HtmlWebpackPlugin({
+    plugins :[new HtmlWebpackPlugin({//实例化插件,生成index.html ,bundle.js
         //'webpack-dev-server --progress --open --port 3008',user this common to watch the changed file, and open new page .
         // but this command is to long ,so  can config this command in packckage.json at script . last input :'npm run dev'. dev is the key of this command.
         filename:'index.html',//The file to write the HTML to. Defaults to index.html. You can specify a subdirectory here too (eg: assets/admin.html).
         template:'template.html' //Load a custom template;Webpack require path to the template.
-    })] //实例化插件,生成index.html ,bundle.js
+    }),
+        //这个插件帮我们做了两件事，es6转es5,再压缩
+        // 压缩js
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            },
+            comments: false //去掉版权信息等注释
+        }),
+        // 代码顺序优化
+        new webpack.optimize.OccurrenceOrderPlugin()
+    ]
 }
