@@ -1,10 +1,109 @@
 <template>
     <div class="tmpl">
-        我是购物车
+        <!-- 1.0 购物车列表 -->
+        <div class="goodsListDiv">
+            <div class="everyGoodsItemStyle" v-for="(item,index) in shopsList" :key="item.id">
+                <!-- 1.1 开关 -->
+                <mt-switch  v-model="switchValues[index]"></mt-switch>
+                <!-- 1.2 图片 -->
+                <img :src="item.thumb_path" />
+                <!-- 1.3 商品信息 -->
+                <div class="priceAndNumberInfo">
+                    <h5>{{item.title}}</h5>
+                    <p>
+                        <span>{{item.sell_price}}</span>&nbsp;&nbsp;
+                        商品数量:{{item.count}}
+                    </p>
+                </div>
+                <!-- 1.4 删除按钮 -->
+                <mt-button size="small" type="danger">删除</mt-button>
+            </div>
+        </div>
+
+        <!-- 2.0 合计 -->
+        <div class="totalStyle">
+            <h6>总计(不含运费)</h6>
+            <p>已经勾选商品&nbsp;<span>{{totalCount}}</span>&nbsp;件
+                ,总价&nbsp;<span>{{totalPrice}}</span>&nbsp;元</p>
+            <mt-button class="jiesuanStyle" size="small" type="danger">去结算</mt-button>
+        </div>
     </div>
 </template>
 
-<style>
+<style scoped>
+    /**
+     1.0 购物车商品列表样式
+ */
+    .goodsListDiv{
+        padding: 5px;
+    }
+
+    .everyGoodsItemStyle{
+        display: flex;
+        height: 100px;
+        border-bottom: 1px solid rgba(92,92,92,0.3);
+        align-items: center;
+    }
+
+    .everyGoodsItemStyle img{
+        height: 75px;
+        width: 75px;
+        padding: 5px;
+        border: 1px solid rgba(92,92,92,0.3);
+        border-radius: 5px;
+        margin-left: 8px;
+    }
+
+    .priceAndNumberInfo{
+        margin-left: 8px;
+        flex: 1;
+    }
+
+    h5{
+        color: #0094ff;
+    }
+
+    .priceAndNumberInfo p{
+        margin-top: 10px;
+    }
+
+    .priceAndNumberInfo span{
+        color: red;
+        font-size: 14px;
+    }
+
+    /**
+        合计
+    */
+    .totalStyle{
+        position: relative;
+        margin-top: 10px;
+        height: 100px;
+        padding-top: 20px;
+        padding-left: 15px;
+        background-color: rgba(92,92,92,0.3)
+    }
+
+    h6{
+        color: black;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .totalStyle p{
+        margin-top: 10px;
+    }
+
+    .totalStyle span{
+        font-size: 16px;
+        color:red;
+    }
+
+    .jiesuanStyle{
+        position: absolute;
+        top: 35px;
+        right: 15px;
+    }
 </style>
 
 <script>
@@ -15,7 +114,10 @@
     export default {
         data(){
             return {
-
+                shopsList:[],
+                switchValues : [],
+                totalCount : 0,
+                totalPrice : 0
             }
         },
         created(){
@@ -44,7 +146,18 @@
                     idsArr.push(key)
                 }
                 var idsString= idsArr.join(',')
+                console.log(idsString)
 //                4.发送ajax请求,获取数据
+                const url = common.apihost + `api/goods/getshopcarlist/${idsString}`
+                this.$http.get(url).then(res=>{
+                    res.body.message.forEach(function(item){
+                        item.count = goodsObj[item.id]
+                    })
+                    this.shopsList = res.body.message
+                    console.log(res.body.message)
+                },err=>{
+
+                })
             }
         }
     }
