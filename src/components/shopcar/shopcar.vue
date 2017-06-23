@@ -16,7 +16,7 @@
                     </p>
                 </div>
                 <!-- 1.4 删除按钮 -->
-                <mt-button size="small" type="danger">删除</mt-button>
+                <mt-button @click="deleteGoods(index)" size="small" type="danger">删除</mt-button>
             </div>
         </div>
 
@@ -109,7 +109,11 @@
 <script>
     import common from '../../common/common.js'
     //导入本地商品存储数组
-    import {getLocalStorageArr} from '../../common/goodscarhelper.js'
+    import {getLocalStorageArr,deleteGoods} from '../../common/goodscarhelper.js'
+
+    import {bus} from '../../common/commonvue.js'
+
+    import { MessageBox } from 'mint-ui'
 
     export default {
         data(){
@@ -121,7 +125,7 @@
             }
         },
         created(){
-        this.getGoodsInfo()
+            this.getGoodsInfo()
         },
         methods:{
             getGoodsInfo(){
@@ -134,7 +138,7 @@
                     const goodsId = goodsArray[i]['goodsId']
                     if(goodsObj[goodsId]){
                         var oldValue = goodsObj[goodsId]
-                        var newValue = oldValue+ parseInt(goodsArray[i]['count'])
+                        var newValue = oldValue + parseInt(goodsArray[i]['count'])
                         goodsObj[goodsId] = newValue
                     }else {
                         goodsObj[goodsId] = parseInt(goodsArray[i]['count'])
@@ -174,9 +178,9 @@
                 this.switchValues.forEach((item,index)=>{
                     //item 的值只有两种 true 和 false
                     if(item){
-                        const goodsObj = this.shopsList[index]
+                        var  goodsObj = this.shopsList[index]
                         //数量的累加
-                        statisticsTotalNumber += goodsObj.count
+                        statisticsTotalNumber += parseInt(goodsObj.count)
                         //金额的累加
                         statisticsTotalPrice += parseInt(goodsObj.count)*parseInt(goodsObj.sell_price)
                     }
@@ -184,6 +188,22 @@
                 //最终赋值，这样的话，就重新计算了
                 this.totalCount = statisticsTotalNumber
                 this.totalPrice = statisticsTotalPrice
+            },
+            //删除商品功能
+            deleteGoods(index){
+                MessageBox.confirm('确定执行此操作?').then(action => {
+            // 1.购物车的徽标数量要更改(减少)
+                    bus.$emit('shopCount',-(this.shopsList[index].count))
+               //2.localStorage中该goodsId对应的数据全部干掉
+                deleteGoods(this.shopsList[index].id)
+                    //3.列表中的那一行商品会不见
+                    this.shopsList.splice(index,1)
+                    this.switchValues.splice(index,1)
+                    //4.统计的价格和数量要重新计算
+                    this.statisticsNumberAndPrice()
+                },cancel=>{
+                    console.log(cancel)
+                })
             }
         }
     }

@@ -22,3 +22,18 @@ export function getCounts(){
 export function getLocalStorageArr(){
     return JSON.parse(localStorage.getItem(key)||"[]")
 }
+
+//根据goodId 删除localStorage中的数据
+export function deleteGoods(goodsId){
+    //1.先把所有的数据拿出来
+    var goodsArray = JSON.parse(localStorage.getItem(key) || '[]')
+    //2.删除localStorage中goodsId等于传递进来的goodsId
+    for(var i=goodsArray.length -1 ;i>=0 ;i--){
+        if(parseInt(goodsId) == parseInt(goodsArray[i].goodsId)){
+            goodsArray.splice(i,1)
+        }
+    }
+    //3.将删除之后剩余的，覆盖写入回去
+    //写回去
+    localStorage.setItem(key,JSON.stringify(goodsArray))
+}
