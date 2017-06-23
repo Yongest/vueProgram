@@ -9,7 +9,7 @@ This is the vue project that include webpack、vue、mui、mint-ui、jquery,ugli
         src:源代码
         dist:最后打包的时候用
         package.json 不要在里面写注释，描述项目的功能，记录我们项目依赖的包
-        webpack.config.js webpack的配置文件，记录一些webpack的配置，方便打包
+        webpack.config.babeljs webpack的配置文件，记录一些webpack的配置，方便打包
     3、创建webpack打包的入口文件(main.js)，它的作用就是，把项目中的其它所有模块(文件)通通导入进来，然后在统一打包
     4、创建App.vue这个根组件，这个是项目已启动看到的页面(组件),要想让我们的App.vue成为根组件，这个时候的在main.js中配置下，具体配置
         ```
