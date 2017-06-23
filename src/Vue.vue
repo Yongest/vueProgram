@@ -19,7 +19,7 @@
                 <span class="mui-tab-label">消息</span>
             </router-link>
             <router-link class="mui-tab-item" to="/shopcar">
-                <span class="mui-icon mui-icon-contact"><span id="badgeId" class="mui-badge">0</span></span>
+                <span class="mui-icon mui-icon-contact"><span id="badgeId" class="mui-badge">{{count}}</span></span>
                 <span class="mui-tab-label">购物车</span>
             </router-link>
             <router-link class="mui-tab-item" to="/settings">
@@ -48,6 +48,9 @@
     import {bus} from './common/commonvue.js'
     //导入jquery
     import $ from 'jquery'
+    // 导入我们的获取localStorage 里面的数量的函数
+    import {getCounts} from './common/goodscarhelper.js'
+
    // 在组件 B 创建的钩子中监听事件
     bus.$on('shopCount', function (goodsCount) {
 //        console.log(goodsCount)
@@ -58,7 +61,8 @@
     export default {
         data(){
             return {
-                isHome:true
+                isHome:true,
+                count:0
             }
         },
         created(){
@@ -67,10 +71,14 @@
             }else {
                 this.isHome = true
             }
+            this.getGoodsCount()
         },
         methods:{
             goBack(){
                 this.$router.go(-1)
+            },
+            getGoodsCount(){
+               this.count= getCounts()
             }
         },
         watch:{

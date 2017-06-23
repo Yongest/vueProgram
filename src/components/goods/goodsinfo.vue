@@ -89,6 +89,9 @@
     //导入公共Vue的实例bus
 //    import {bus,age} from '../../common/commonvue.js'
     import {bus} from '../../common/commonvue.js'
+    //导入goodscarhelper 函数
+    import {addGoods} from '../../common/goodscarhelper.js'
+
     export default {
         data(){
             return {
@@ -141,6 +144,9 @@
 //                1.更改跟组件里面的tapBar中的购物车里面的徽标
                 // 触发组件 A 中的事件
                 bus.$emit('shopCount',this.goodsCount)
+
+                //2.把数据存储到localstrorage里面
+                addGoods({goodsId:this.$route.params.goodsId,count:this.goodsCount})
             }
         },
         components:{
