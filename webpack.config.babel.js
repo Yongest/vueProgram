@@ -32,6 +32,11 @@ module.exports = {
             {
                 test: /vue-preview.src.*?js$/,
                 loader: 'babel-loader'
+            },
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/ //排除node_modules
             }
         ]
     },
