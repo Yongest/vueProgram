@@ -2,7 +2,8 @@
 const path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require("html-webpack-plugin");
-
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");//压缩css文件
 module.exports = {
     entry:path.join(__dirname,'src/main.js'),
     output:{
@@ -15,27 +16,36 @@ module.exports = {
         filename:'bundle.js'
     },
     module :{
-        loaders:[
+        rules:[
             {
                 test:/\.vue$/,
-                loader:'vue-loader'//装了三个,只要写这一个,因为有相互依赖
+                use:'vue-loader' //装了三个,只要写这一个,因为有相互依赖
             },
             {
-                test:/\.css$/,
-                loader:'style-loader!css-loader'//order cant not change
+                // test:/\.css$/,
+             test: /\.css$/,
+                use: [ 'style-loader', 'css-loader' ]
+                // use: [
+                //     { loader: 'style-loader' },
+                //     {
+                //         loader: 'css-loader',
+                //         options: {
+                //             modules: true
+                //         }
+                //     }]
             },
             {
                 //test:/\.(ttf|png|jpg|gif|svg)$/,
                 test:/\.(png|ttf|gif|svg)$/,
-                loader:'url-loader?limit=4000' // when pickture size less than 4k, use 'base-64' express
+                use:'url-loader?limit=4000' // when pickture size less than 4k, use 'base-64' express
             },
             {
                 test: /vue-preview.src.*?js$/,
-                loader: 'babel-loader'
+                use: 'babel-loader'
             },
             {
                 test: /\.js$/,
-                loader: 'babel-loader',
+                use: 'babel-loader',
                 exclude: /node_modules/ //排除node_modules
             }
         ]
@@ -48,13 +58,16 @@ module.exports = {
     }),
         //这个插件帮我们做了两件事，es6转es5,再压缩
         // 压缩js
-        new webpack.optimize.UglifyJsPlugin({
+        /*new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
             },
             comments: false //去掉版权信息等注释
-        }),
+        }),*/
         // 代码顺序优化
-        new webpack.optimize.OccurrenceOrderPlugin()
+        // new webpack.optimize.OccurrenceOrderPlugin()
+
+        // make sure to include the plugin for the magic
+        new VueLoaderPlugin()
     ]
 }
