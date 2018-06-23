@@ -632,4 +632,4 @@ This is the vue project that include webpack、vue、mui、mint-ui、jquery,ugli
                 商品唯一ID ，标题，价格，扣钱的用户支付宝id，商户账号的id 80081234567892222
 
    
-        ( 文档地址:)[https://doc.open.alipay.com/doc2/detail.htm?treeId=203&articleId=105463&docType=1]
+        [文档地址:]( https://doc.open.alipay.com/doc2/detail.htm?treeId=203&articleId=105463&docType=1)
