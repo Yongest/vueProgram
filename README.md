@@ -129,11 +129,11 @@ This is the vue project that include webpack、vue、mui、mint-ui、jquery,ugli
 
     轮播图
         mint-ui swipe
-        [参考地址:](http://mint-ui.github.io/docs/#/zh-cn2/swipe)
+ [参考地址:http://mint-ui.github.io/docs/#/zh-cn2/swipe](http://mint-ui.github.io/docs/#/zh-cn2/swipe)
 
     九宫格布局
         mui
-       [ 参考地址:](http://www.dcloud.io/hellomui/examples/grid-default.html)
+ [ 参考地址:http://www.dcloud.io/hellomui/examples/grid-default.html](http://www.dcloud.io/hellomui/examples/grid-default.html)
 
 ### 轮播图的数据
 
@@ -185,7 +185,7 @@ This is the vue project that include webpack、vue、mui、mint-ui、jquery,ugli
         ```
 
 ### js中时间格式化
-    (参考地址:)[http://momentjs.cn/]
+[参考地址:http://momentjs.cn/](http://momentjs.cn/)
 
     步骤
         1、安装包
@@ -342,11 +342,11 @@ This is the vue project that include webpack、vue、mui、mint-ui、jquery,ugli
     1、UI看到
 
     2、点击返回按钮需要做的事
-        (参考:)(https://router.vuejs.org/zh-cn/essentials/navigation.html)
+(参考:https://router.vuejs.org/zh-cn/essentials/navigation.html)(https://router.vuejs.org/zh-cn/essentials/navigation.html)
 
     3、我们要监控路由导航
-        [参考:](https://cn.vuejs.org/v2/api/#watch)
-        [参考:](https://router.vuejs.org/zh-cn/api/component-injections.html)
+[参考:https://cn.vuejs.org/v2/api/#watch](https://cn.vuejs.org/v2/api/#watch)
+[参考:https://router.vuejs.org/zh-cn/api/component-injections.html](https://router.vuejs.org/zh-cn/api/component-injections.html)
 
 # step4
     目标:
@@ -427,8 +427,7 @@ This is the vue project that include webpack、vue、mui、mint-ui、jquery,ugli
                          比如回退路由 $router.go(-1)
                          可以理解为动作执行者
 
-
-   (参考:)[https://router.vuejs.org/zh-cn/api/component-injections.html]
+[参考:https://router.vuejs.org/zh-cn/api/component-injections.html](https://router.vuejs.org/zh-cn/api/component-injections.html)
 
 
 ### 集成商品数量子组件
@@ -492,7 +491,7 @@ This is the vue project that include webpack、vue、mui、mint-ui、jquery,ugli
 
 
     非父子组件:
-        (参考地址:)[https://cn.vuejs.org/v2/guide/components.html]
+[参考地址:https://cn.vuejs.org/v2/guide/components.html](https://cn.vuejs.org/v2/guide/components.html)
 
         步骤:
             1、整一个公共的Vue对象
@@ -563,7 +562,7 @@ This is the vue project that include webpack、vue、mui、mint-ui、jquery,ugli
             再调用一个统计数量和价格的方法 this.statisticsNumberAndPrice()
 
 ### 组件的生命周期
-    (参考:)[https://cn.vuejs.org/v2/guide/instance.html]
+[参考:https://cn.vuejs.org/v2/guide/instance.html](https://cn.vuejs.org/v2/guide/instance.html)
 
     组件的生命周期钩子(函数)是vue自动帮我们调用的，我们写好对应的函数即可
 
@@ -632,4 +631,4 @@ This is the vue project that include webpack、vue、mui、mint-ui、jquery,ugli
                 商品唯一ID ，标题，价格，扣钱的用户支付宝id，商户账号的id 80081234567892222
 
    
-        [文档地址:]( https://doc.open.alipay.com/doc2/detail.htm?treeId=203&articleId=105463&docType=1)
+[文档地址:]( https://doc.open.alipay.com/doc2/detail.htm?treeId=203&articleId=105463&docType=1)
