@@ -1,6 +1,7 @@
 # vue
 This is the vue project that include webpack、vue、mui、mint-ui、jquery,uglifyJs,es6、node and so on technologies. This is also a single page program.
 
+###（webpack 4.12 安装后需要 安装 webpack-cli，从webpack2.4 到4.12中间踩到很多坑）
 # step one
 
 ## 项目的搭建
