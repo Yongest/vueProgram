@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --progress --open --port 3008"
+    "dev": "webpack-dev-server --progress --open --port 3009"
   },
   "keywords": [],
   "author": "yonger",
